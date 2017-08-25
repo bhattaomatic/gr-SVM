@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<block>
+  <name>SVM Test</name>
+  <key>SVM_Test</key>
+  <category>SVM</category>
+  <import>import SVM</import>
+  <make>SVM.Test($label)</make>
+  
+  <param>
+    <name>Label</name>
+    <key>label</key>
+    <type>float</type>
+  </param>
+
+
+  <sink>
+    <name>data</name>
+    <type>message</type>
+  </sink>
+
+</block>

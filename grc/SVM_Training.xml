@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<block>
+  <name>Training</name>
+  <key>SVM_Training</key>
+  <category>SVM</category>
+  <import>import SVM</import>
+  <make>SVM.Training($label1, $label2)</make>
+
+  <param>
+    <name>Label 1</name>
+    <key>label1</key>
+    <type>float</type>
+  </param>
+  
+  <param>
+    <name>Label 2</name>
+    <key>label2</key>
+    <type>float</type>
+  </param>
+
+  <!-- Make one 'sink' node per input. Sub-nodes:
+       * name (an identifier for the GUI)
+       * type
+       * vlen
+       * optional (set to 1 for optional inputs) -->
+  <sink>
+    <name>Data1</name>
+    <type>message</type>
+  </sink>
+  
+  <sink>
+    <name>Data2</name>
+    <type>message</type>
+  </sink>
+
+</block>
