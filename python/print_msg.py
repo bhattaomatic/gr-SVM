@@ -22,38 +22,21 @@
 import numpy
 from gnuradio import gr
 import pmt
-from sklearn.svm import SVC
-from sklearn.externals import joblib
-from sh import cd
 
-class Test(gr.basic_block):
+class print_msg(gr.basic_block):
     """
-    docstring for block Test
+    docstring for block print_msg
     """
     def __init__(self):
         gr.basic_block.__init__(self,
-            name="Test",
+            name="print_msg",
             in_sig=None,
             out_sig=None)
-        self.message_port_register_out(pmt.intern("out"));
-        self.message_port_register_in(pmt.intern("data"));
-        self.set_msg_handler(pmt.intern("data"), self.handler);
-
+        self.message_port_register_in(pmt.intern("in"));
+        self.set_msg_handler(pmt.intern("in"), self.handler);
 
     def handler(self, msg):
-        # get input from the port
-        timestamp = pmt.car(msg)
-        x = pmt.to_python(pmt.cdr(msg))
-        cd('/home/abhishek/Git/gr-SVM/include/models/')
-        mean = joblib.load('mean.pkl')
-        standarddev = joblib.load('std.pkl')
-        x = (x - mean)/standarddev
-        X = x.reshape(1,-1)
-        clf = joblib.load('svm_model.pkl')
-        output = clf.predict(X)
-        self.message_port_pub(pmt.intern("out"), pmt.cons(pmt.PMT_NIL, pmt.to_pmt(output)))
-
-        
-        
-        
+        meta = pmt.car(msg)
+        data = pmt.cdr(msg)
+        print data
         

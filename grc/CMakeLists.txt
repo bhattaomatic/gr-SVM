@@ -19,5 +19,6 @@
 
 install(FILES
     SVM_Test.xml
-    SVM_Training.xml DESTINATION share/gnuradio/grc/blocks
+    SVM_print_msg.xml
+    SVM_prediction_printer.xml DESTINATION share/gnuradio/grc/blocks
 )

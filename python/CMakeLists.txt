@@ -32,7 +32,8 @@ GR_PYTHON_INSTALL(
     FILES
     __init__.py
     Test.py
-    Training.py DESTINATION ${GR_PYTHON_DIR}/SVM
+    print_msg.py
+    prediction_printer.py DESTINATION ${GR_PYTHON_DIR}/SVM
 )
 
 ########################################################################
@@ -43,4 +44,5 @@ include(GrTest)
 set(GR_TEST_TARGET_DEPS gnuradio-SVM)
 set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
 GR_ADD_TEST(qa_Test ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_Test.py)
-GR_ADD_TEST(qa_Training ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_Training.py)
+GR_ADD_TEST(qa_print_msg ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_print_msg.py)
+GR_ADD_TEST(qa_prediction_printer ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_prediction_printer.py)

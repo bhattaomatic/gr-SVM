@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<block>
+  <name>SVM Message Printer</name>
+  <key>SVM_print_msg</key>
+  <category>SVM</category>
+  <import>import SVM</import>
+  <make>SVM.print_msg()</make>
+
+
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+
+</block>

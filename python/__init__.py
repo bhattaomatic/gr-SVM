@@ -32,5 +32,6 @@ except ImportError:
 
 # import any pure python here
 from Test import Test
-from Training import Training
+from print_msg import print_msg
+from prediction_printer import prediction_printer
 #

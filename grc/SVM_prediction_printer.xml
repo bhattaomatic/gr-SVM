@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<block>
+  <name>prediction_printer</name>
+  <key>SVM_prediction_printer</key>
+  <category>SVM</category>
+  <import>import SVM</import>
+  <make>SVM.prediction_printer($label1, $label2, $max_samples, $threshold)</make>
+
+  <param>
+    <name>Label1</name>
+    <key>label1</key>
+    <type>string</type>
+  </param>
+  
+  <param>
+    <name>Label2</name>
+    <key>label2</key>
+    <type>string</type>
+  </param>
+  
+  <param>
+    <name>Max Iterations</name>
+    <key>max_samples</key>
+    <type>float</type>
+  </param>
+  
+  <param>
+    <name>Threshold</name>
+    <key>threshold</key>
+    <type>float</type>
+  </param>
+
+  <sink>
+    <name>in</name>
+    <type>message</type>
+  </sink>
+
+
+</block>

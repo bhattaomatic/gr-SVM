@@ -22,37 +22,36 @@
 import numpy
 from gnuradio import gr
 import pmt
-from sklearn.svm import SVC
-from sklearn.externals import joblib
-from sh import cd
 
-class Test(gr.basic_block):
+class prediction_printer(gr.basic_block):
     """
-    docstring for block Test
+    docstring for block prediction_printer
     """
-    def __init__(self):
+    def __init__(self, label1, label2, max_samples, threshold):
         gr.basic_block.__init__(self,
-            name="Test",
+            name="prediction_printer",
             in_sig=None,
             out_sig=None)
-        self.message_port_register_out(pmt.intern("out"));
-        self.message_port_register_in(pmt.intern("data"));
-        self.set_msg_handler(pmt.intern("data"), self.handler);
-
+        self.message_port_register_in(pmt.intern("in"));
+        self.set_msg_handler(pmt.intern("in"), self.handler);
+        self.max_samples = max_samples
+        self.readings = []
+        self.threshold = threshold
+        self.label1 = label1
+        self.label2 = label2
 
     def handler(self, msg):
-        # get input from the port
-        timestamp = pmt.car(msg)
-        x = pmt.to_python(pmt.cdr(msg))
-        cd('/home/abhishek/Git/gr-SVM/include/models/')
-        mean = joblib.load('mean.pkl')
-        standarddev = joblib.load('std.pkl')
-        x = (x - mean)/standarddev
-        X = x.reshape(1,-1)
-        clf = joblib.load('svm_model.pkl')
-        output = clf.predict(X)
-        self.message_port_pub(pmt.intern("out"), pmt.cons(pmt.PMT_NIL, pmt.to_pmt(output)))
+        reading = pmt.to_python(pmt.cdr(msg))
+        self.readings.append(reading)
 
+        if len(self.readings) == self.max_samples:
+            avg = numpy.mean(self.readings)
+            if avg < self.threshold:
+                print "Average of the blocks are: ", self.label1
+            else:
+                print "Average of the blocks are: ", self.label2
+            self.readings = []
+        
         
         
         

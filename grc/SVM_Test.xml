@@ -4,18 +4,16 @@
   <key>SVM_Test</key>
   <category>SVM</category>
   <import>import SVM</import>
-  <make>SVM.Test($label)</make>
-  
-  <param>
-    <name>Label</name>
-    <key>label</key>
-    <type>float</type>
-  </param>
-
+  <make>SVM.Test()</make>
 
   <sink>
     <name>data</name>
     <type>message</type>
   </sink>
+
+  <source>
+    <name>out</name>
+    <type>message</type>
+  </source>
 
 </block>
