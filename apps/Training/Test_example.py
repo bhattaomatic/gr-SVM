@@ -9,8 +9,8 @@ from myDataset import myDataset
 
 
 mdt = myDataset()
-cd('/home/abhishek/tmp/Untitled Folder/data')
-x = sp.fromfile(open('no_person'), dtype=sp.complex64)
+cd('/home/abhishek/tmp/Untitled Folder/data_bladeRF1')
+x = sp.fromfile(open('person_walking'), dtype=sp.complex64)
 x = np.abs(x)
 
 x = mdt.reshapeData(x, norm=0)
@@ -22,4 +22,4 @@ x = (x - mean)/standarddev
 #X = x.reshape(1,-1)
 clf = joblib.load('svm_model.pkl')
 output = clf.predict(x)
-print sum(output)/len(output)
+print np.mean(output)

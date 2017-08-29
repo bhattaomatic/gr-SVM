@@ -11,7 +11,7 @@ import pmt
 
 mdt = myDataset()
 
-cd('/home/abhishek/tmp/Untitled Folder/data/')
+cd('/home/abhishek/tmp/Untitled Folder/data_bladeRF1/')
 #cd('/home/abhishek/Masters_and_Phd/201x_CommSense/Capture set 5/Data_Capture_Feb_25_2017/singlePerson_different_location/person_10m/2')
 #Trainingdata1 = np.loadtxt('chan_imp_resp_normal_abs.txt') 
 Trainingdata1 = sp.fromfile(open('no_person'), dtype=sp.complex64)
@@ -40,10 +40,10 @@ joblib.dump(meantraining, 'mean.pkl')
 joblib.dump(stdtraining, 'std.pkl')
 print "Mean: ", meantraining, "std: ", stdtraining
 label = np.hstack((Labeldata1, Labeldata2))
-print label
+#print label
 
 C = 1 # SVM regularization parameter
-clf = SVC(kernel= 'linear', verbose=False, C=C)
+clf = SVC(kernel= 'rbf', verbose=False, C=C)
 output = clf.fit(training, label)
 testOutput = clf.predict(training)
 print "Prediction output: ", testOutput

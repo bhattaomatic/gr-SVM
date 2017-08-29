@@ -45,6 +45,7 @@ class prediction_printer(gr.basic_block):
         self.readings.append(reading)
 
         if len(self.readings) == self.max_samples:
+            #avg = sum(self.readings)/self.max_samples
             avg = numpy.mean(self.readings)
             if avg < self.threshold:
                 print "Average of the blocks are: ", self.label1
