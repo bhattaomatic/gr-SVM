@@ -27,16 +27,22 @@ class print_msg(gr.basic_block):
     """
     docstring for block print_msg
     """
-    def __init__(self):
+    def __init__(self, var):
         gr.basic_block.__init__(self,
             name="print_msg",
             in_sig=None,
             out_sig=None)
         self.message_port_register_in(pmt.intern("in"));
         self.set_msg_handler(pmt.intern("in"), self.handler);
+        self.var = var
 
     def handler(self, msg):
         meta = pmt.car(msg)
         data = pmt.cdr(msg)
-        print data
+        if self.var == "data":
+            print data
+        elif self.var == "meta":
+            print meta
+        else:
+            print "Warning: Nothing to print --> Please choose either (meta) or (data)"
         

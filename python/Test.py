@@ -36,6 +36,7 @@ class Test(gr.basic_block):
             in_sig=None,
             out_sig=None)
         self.message_port_register_out(pmt.intern("out"));
+        self.message_port_register_out(pmt.intern("timestamp"));
         self.message_port_register_in(pmt.intern("data"));
         self.set_msg_handler(pmt.intern("data"), self.handler);
 
@@ -52,6 +53,7 @@ class Test(gr.basic_block):
         clf = joblib.load('svm_model.pkl')
         output = clf.predict(X)
         self.message_port_pub(pmt.intern("out"), pmt.cons(pmt.PMT_NIL, pmt.to_pmt(output)))
+        self.message_port_pub(pmt.intern("timestamp"), pmt.cons(timestamp, pmt.PMT_NIL))
 
         
         

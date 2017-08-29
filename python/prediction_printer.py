@@ -48,8 +48,10 @@ class prediction_printer(gr.basic_block):
             avg = numpy.mean(self.readings)
             if avg < self.threshold:
                 print "Average of the blocks are: ", self.label1
+                print "Label 1 Avg: ", avg
             else:
                 print "Average of the blocks are: ", self.label2
+                print "Label 2 Avg: ", avg
             self.readings = []
         
         

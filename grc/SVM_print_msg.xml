@@ -4,7 +4,13 @@
   <key>SVM_print_msg</key>
   <category>SVM</category>
   <import>import SVM</import>
-  <make>SVM.print_msg()</make>
+  <make>SVM.print_msg($var)</make>
+  
+  <param>
+    <name>Variable to print</name>
+    <key>var</key>
+    <type>string</type>
+  </param>
 
 
   <sink>

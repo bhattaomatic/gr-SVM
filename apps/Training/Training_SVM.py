@@ -11,15 +11,15 @@ import pmt
 
 mdt = myDataset()
 
-cd('/home/abhishek/tmp/Untitled Folder/')
+cd('/home/abhishek/tmp/Untitled Folder/data/')
 #cd('/home/abhishek/Masters_and_Phd/201x_CommSense/Capture set 5/Data_Capture_Feb_25_2017/singlePerson_different_location/person_10m/2')
 #Trainingdata1 = np.loadtxt('chan_imp_resp_normal_abs.txt') 
-Trainingdata1 = sp.fromfile(open('person_stationary'), dtype=sp.complex64)
+Trainingdata1 = sp.fromfile(open('no_person'), dtype=sp.complex64)
 Trainingdata1 = np.abs(Trainingdata1)
 
 #cd('/home/abhishek/Masters_and_Phd/201x_CommSense/Capture set 5/Data_Capture_Feb_25_2017/singlePerson_different_location/Without person/2/')
 #Trainingdata2 = np.loadtxt('chan_imp_resp_normal_abs.txt') 
-Trainingdata2 = sp.fromfile(open('person_moving'), dtype=sp.complex64)
+Trainingdata2 = sp.fromfile(open('person_walking'), dtype=sp.complex64)
 Trainingdata2 = np.abs(Trainingdata2)
 
 # Create the Training data
@@ -40,6 +40,7 @@ joblib.dump(meantraining, 'mean.pkl')
 joblib.dump(stdtraining, 'std.pkl')
 print "Mean: ", meantraining, "std: ", stdtraining
 label = np.hstack((Labeldata1, Labeldata2))
+print label
 
 C = 1 # SVM regularization parameter
 clf = SVC(kernel= 'linear', verbose=False, C=C)
