@@ -45,6 +45,7 @@ class Test(gr.basic_block):
         # get input from the port
         timestamp = pmt.car(msg)
         x = pmt.to_python(pmt.cdr(msg))
+        x = numpy.abs(x)
         cd('/home/abhishek/Git/gr-SVM/include/models/')
         mean = joblib.load('mean.pkl')
         standarddev = joblib.load('std.pkl')
